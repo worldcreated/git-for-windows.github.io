@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>{{ if ne "" .Title }}{{ .Title }}{{ else }}Git for Windows{{ end }}</title>
+		<meta name="description" content="We bring the awesome Git VCS to Windows">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+		{{- $style := resources.Get "sass/pack.scss" | resources.ExecuteAsTemplate "pack.scss" . | css.Sass | resources.Minify }}
+		<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+		<link rel="shortcut icon" href="favicon.ico">
+	</head>
+	<body{{ if ne "home" .Kind }} class="page"{{ end }}>
+		{{ if eq "home" .Kind -}}
+		{{- partial "header" . -}}
+		{{- else -}}
+		{{- partial "footer" . -}}
+		{{- end }}
+		<section class="details">
+			<article>
+				{{ block "main" . }}
+				{{ .Content }}
+				{{ end }}
+			</article>
+		</section>
+		{{ partial "footer" . }}
+		{{- $baguettebox := resources.Get "js/baguetteBox.min.js" -}}
+		{{- $js := slice $baguettebox | resources.Concat "js/pack.js" }}
+		<script src="{{ $js.RelPermalink }}"></script>
+		<script>
+			window.addEventListener('load', function() {
+				baguetteBox.run('.verticalgallery');
+				{{ if eq "home" .Kind -}}
+				/* Replace the download link if a Windows browser was detected */
+				try {
+					var href = $('.version > a')[0].href.match(/^(.*\/)tag(\/.*)$/);
+					var version = $('.version > a')[0].title.match(/^Version ([0-9.]*)(\(([0-9]*)?\))?/);
+					if (!href || !version || !navigator.userAgentData)
+						throw 0;
+
+					navigator.userAgentData.getHighEntropyValues(["architecture", "platform", "bitness"])
+					.then(function(browser) {
+						if (browser.platform != "Windows" || browser.bitness != "64") return;
+
+						var architecture = browser.architecture == "arm" ? "arm64" : "64-bit";
+						var url = href[1] + 'download' + href[2] + '/Git-' + version[1] + '-' + architecture + '.exe';
+						$('a.button:contains("Download")')[0].href = url;
+					})
+				} catch(e) {}
+				{{ end -}}
+			});
+		</script>
+	</body>
+</html>

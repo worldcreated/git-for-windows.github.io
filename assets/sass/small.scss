@@ -1,0 +1,147 @@
+@media screen and (max-width: 1050px) {
+	.content {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.content {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	html {
+		font-size: 16px;
+	}
+
+	.feature h2 {
+		font-size: 2.2em;
+	}
+
+	h2 {
+		font-size: 1.15em;
+	}
+
+	.button {
+		font-size: 1em;
+	}
+
+	.featurebutton {
+		width: 36%;
+	}
+
+	.content {
+		width: 100%;
+		min-width: 600px;
+	}
+
+	header {
+		height: auto;
+	}
+
+	.feature article {
+		width: 65%;
+		height: 12em;
+		padding-bottom: 2%;
+	}
+
+	.detailstext {
+		width: 58%;
+	}
+
+	.detailsimg {
+		width: 35%;
+	}
+
+	.imagerollover {
+		width: 30%;
+	}
+
+	.verticalgallery img {
+		width: 100%;
+	}
+
+	nav ul,
+	footer a {
+		float: right;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.content {
+		min-width: 380px;
+	}
+
+	html {
+		font-size: 14px;
+	}
+
+	.feature h2 {
+		font-size: 2em;
+	}
+
+	.feature article {
+		height: 12em;
+	}
+
+	.detailstext {
+		width: 58%;
+	}
+
+	.detailsimg {
+		width: 35%;
+	}
+}
+
+@media screen and (max-width: 380px) {
+	.content {
+		min-width: 240px;
+	}
+
+	.feature h2 {
+		font-size: 1.1em;
+	}
+
+	.feature article {
+		height: 12em;
+	}
+
+	.detailstext {
+		width: 55%;
+	}
+
+	.detailsimg {
+		width: 30%;
+	}
+
+	.featurebutton {
+		width: 40%;
+	}
+
+	nav ul {
+		float: right;
+		margin-top: 0;
+	}
+	footer h1 {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 240px) {
+	.content {
+		min-width: 240px;
+	}
+
+	html {
+		font-size: 8px;
+	}
+
+	.feature h2 {
+		font-size: 1em;
+	}
+
+	.feature article {
+		height: 9em;
+	}
+}
